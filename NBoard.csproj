@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>NBoard</RootNamespace>
+    <AssemblyName>NBoard</AssemblyName>
+    <Version>1.0.0</Version>
+    <Authors>Naajmul</Authors>
+    <Product>NBoard - Professional Whiteboard</Product>
+    <Description>A professional digital whiteboard application for Windows with drawing, shapes, text, and document management</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="itext7" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
