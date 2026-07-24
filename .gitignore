@@ -1,0 +1,16 @@
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.cache
+.DS_Store
+node_modules/
+*.log
+dist/
+Release/
+Debug/
+*.exe
+*.msi
+.vscode/
+.idea/
