@@ -10,6 +10,7 @@
     <Authors>Naajmul</Authors>
     <Product>NBoard - Professional Whiteboard</Product>
     <Description>A professional digital whiteboard application for Windows with drawing, shapes, text, and document management</Description>
+    <ApplicationIcon>Resources/NBoard.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
