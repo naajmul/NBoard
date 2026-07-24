@@ -1,0 +1,92 @@
+<Window x:Class="NBoard.Views.CanvasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NBoard Canvas" Height="800" Width="1400"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Background="#F0F0F0" Padding="0">
+            <MenuItem Header="File">
+                <MenuItem Header="New Document" Click="MenuNewDocument_Click" InputGestureText="Ctrl+N"/>
+                <MenuItem Header="Open Document" Click="MenuOpenDocument_Click" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="Save" Click="MenuSave_Click" InputGestureText="Ctrl+S"/>
+                <Separator/>
+                <MenuItem Header="Export">
+                    <MenuItem Header="Export as PDF" Click="MenuExportPDF_Click"/>
+                    <MenuItem Header="Export as PNG" Click="MenuExportPNG_Click"/>
+                    <MenuItem Header="Export as SVG" Click="MenuExportSVG_Click"/>
+                    <MenuItem Header="Export as JSON" Click="MenuExportJSON_Click"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Exit" Click="MenuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo" Click="MenuUndo_Click" InputGestureText="Ctrl+Z"/>
+                <MenuItem Header="Redo" Click="MenuRedo_Click" InputGestureText="Ctrl+Y"/>
+                <Separator/>
+                <MenuItem Header="Clear All" Click="MenuClearAll_Click"/>
+            </MenuItem>
+            <MenuItem Header="Tools">
+                <MenuItem Header="Pen" Click="MenuPen_Click"/>
+                <MenuItem Header="Eraser" Click="MenuEraser_Click"/>
+                <MenuItem Header="Text" Click="MenuText_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="MenuAbout_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Toolbar -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#E8E8E8" Padding="10" Spacing="5">
+            <!-- Drawing Tools -->
+            <Button Name="PenButton" Content="✏️ Pen" Padding="10,6" Click="PenButton_Click" Background="#007ACC" Foreground="White" FontWeight="Bold"/>
+            <Button Name="EraserButton" Content="🗑️ Eraser" Padding="10,6" Click="EraserButton_Click"/>
+            <Button Name="TextButton" Content="📝 Text" Padding="10,6" Click="TextButton_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+
+            <!-- Shapes -->
+            <Button Content="📏 Line" Padding="10,6" Click="LineButton_Click"/>
+            <Button Content="⭕ Circle" Padding="10,6" Click="CircleButton_Click"/>
+            <Button Content="▭ Rectangle" Padding="10,6" Click="RectButton_Click"/>
+            <Button Content="■ Square" Padding="10,6" Click="SquareButton_Click"/>
+            <Button Content="△ Triangle" Padding="10,6" Click="TriangleButton_Click"/>
+            <Button Content="⬡ Hexagon" Padding="10,6" Click="HexagonButton_Click"/>
+            <Button Content="⬠ Pentagon" Padding="10,6" Click="PentagonButton_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+
+            <!-- Undo/Redo -->
+            <Button Name="UndoButton" Content="↶ Undo" Padding="10,6" Click="UndoButton_Click" ToolTip="Ctrl+Z"/>
+            <Button Name="RedoButton" Content="↷ Redo" Padding="10,6" Click="RedoButton_Click" ToolTip="Ctrl+Y"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+
+            <!-- Color and Size -->
+            <TextBlock Text="Color:" VerticalAlignment="Center" Margin="5,0" FontWeight="Bold"/>
+            <Button Name="ColorButton" Width="35" Height="35" Background="Black" Click="ColorButton_Click" Cursor="Hand" ToolTip="Click to change color"/>
+
+            <TextBlock Text="Size:" VerticalAlignment="Center" Margin="15,0,5,0" FontWeight="Bold"/>
+            <Slider Name="SizeSlider" Width="120" Minimum="1" Maximum="50" Value="3" VerticalAlignment="Center" ToolTip="Adjust pen size"/>
+            <TextBlock Name="SizeLabel" Text="3" Width="20" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold"/>
+        </StackPanel>
+
+        <!-- Canvas -->
+        <ScrollViewer Grid.Row="2" Name="CanvasScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Background="#F9F9F9">
+            <InkCanvas Name="DrawingCanvas" Background="White" Height="5000" Width="1200"
+                       PreviewMouseDown="Canvas_PreviewMouseDown"
+                       PreviewMouseMove="Canvas_PreviewMouseMove"
+                       PreviewMouseUp="Canvas_PreviewMouseUp"/>
+        </ScrollViewer>
+
+        <!-- Status Bar -->
+        <StatusBar Grid.Row="3" Background="#F0F0F0">
+            <TextBlock Name="StatusLabel" Text="Ready | Pen Tool Selected" Foreground="#666" Padding="5"/>
+        </StatusBar>
+    </Grid>
+</Window>
